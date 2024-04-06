@@ -976,8 +976,7 @@ public class PhoneSwitcher extends Handler {
         Phone phone = PhoneFactory.getDefaultPhone();
         DataConfigManager dataConfig = phone.getDataNetworkController().getDataConfigManager();
         mRequirePingTestBeforeDataSwitch = dataConfig.isPingTestBeforeAutoDataSwitchRequired();
-        mAutoDataSwitchAvailabilityStabilityTimeThreshold =
-                dataConfig.getAutoDataSwitchAvailabilityStabilityTimeThreshold();
+        updateAutoDataSwitchAvailabilityStabilityTimeThreshold();
         mAutoDataSwitchValidationMaxRetry =
                 dataConfig.getAutoDataSwitchValidationMaxRetry();
     }
@@ -2356,5 +2355,12 @@ public class PhoneSwitcher extends Handler {
             }
         }
         return false;
+    }
+
+    protected void updateAutoDataSwitchAvailabilityStabilityTimeThreshold() {
+        Phone phone = PhoneFactory.getDefaultPhone();
+        DataConfigManager dataConfig = phone.getDataNetworkController().getDataConfigManager();
+        mAutoDataSwitchAvailabilityStabilityTimeThreshold =
+                dataConfig.getAutoDataSwitchAvailabilityStabilityTimeThreshold();
     }
 }
