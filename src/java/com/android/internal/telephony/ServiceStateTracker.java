@@ -1129,6 +1129,8 @@ public class ServiceStateTracker extends Handler {
         if (power) {
             if (forEmergencyCall) {
                 clearAllRadioOffReasons();
+                removeMessages(EVENT_SET_RADIO_POWER_OFF);
+                mPendingRadioPowerOffAfterDataOff = false;
             } else {
                 mRadioPowerOffReasons.remove(reason);
             }
